@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits.h>
 using namespace std;
 void bubbleSort(int arr[], const int n);
 template <typename T>
@@ -8,6 +9,7 @@ void merge(int arr[], int low, int mid, int high);
 void mergeSort(int arr[], int low, int high);
 void quickSort(int arr[], int low, int high);
 int partition(int arr[], int low, int high);
+void countingSort(int arr[], int size);
 int main()
 {
     const int n = 14;
@@ -17,7 +19,8 @@ int main()
     // selectionSort(arr, n);
     // insertionSort(arr, n);
     // mergeSort(arr, 0, n);
-    quickSort(arr, 0, n);
+    // quickSort(arr, 0, n);
+    countingSort(arr, n);
     for (int i = 0; i < n; i++)
     {
         cout << arr[i] << " ";
@@ -154,5 +157,44 @@ void quickSort(int arr[], int low, int high)
         int partitionIndex = partition(arr, low, high);
         quickSort(arr, low, partitionIndex - 1);
         quickSort(arr, partitionIndex + 1, high);
+    }
+}
+void countingSort(int arr[], int size)
+{
+    int max = INT_MIN;
+    // to find max value from the initial array
+    for (int i = 0; i < size; i++)
+    {
+        if (max < arr[i])
+        {
+            max = arr[i];
+        }
+    }
+    // declare a new array of size max+1
+    int* count = new int[max + 1];
+    // initialize new array with 0
+    for (int i = 0; i < max + 1; i++)
+    {
+        count[i] = 0;
+    }
+    // increment value at count array index [index will be the value of initial array]
+    for (int i = 0; i < size; i++)
+    {
+        count[arr[i]] = count[arr[i]] + 1;
+    }
+    int i = 0; int j = 0;
+    // loop to copy value from count array to arr
+    while (i < max + 1)
+    {
+        if (count[i] > 0)
+        {
+            arr[j] = i;
+            count[i] = count[i] - 1;
+            j++;
+        }
+        else
+        {
+            i++;
+        }
     }
 }
