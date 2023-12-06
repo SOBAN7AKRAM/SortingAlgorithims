@@ -29,18 +29,26 @@ int main()
 }
 void bubbleSort(int arr[],const int n)
 {
+    // loop that how many time we make comparison
     for (int i = 0; i < n - 1; i++)
     {
+        // n - 1 - i because after every iteration last elements is sorted
         for (int j = 0; j < n - 1 - i; j++)
         {
             if (arr[j] > arr[j + 1])
             {
+                // swap elements
                 int temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
             }
         }
     }
+
+
+    // time complexity 0(n^2)
+    // it is an inplace algorithim (no additional memory needed)
+    // it is a stable algorithim (element order is preserved)
 }
 template<typename T>
 void selectionSort(T arr[], const int n)
@@ -59,6 +67,11 @@ void selectionSort(T arr[], const int n)
         arr[i] = arr[smallest];
         arr[smallest] = temp;
     }
+
+    // time complexity: 0(n^2)
+    // not stable 
+    // inplace algorithim
+
 }
 void insertionSort(int arr[], const int n)
 {
@@ -75,6 +88,14 @@ void insertionSort(int arr[], const int n)
         }
         arr[j + 1] = key;
     }
+
+    // time complexity:
+    // Worst or Average Case: 0(n ^ 2)
+    // Best Case: 0(n)
+    // (When is almost sorted)
+    // inPlace Algorithim
+    // Stable Algorithim
+
 }
 void mergeSort(int arr[], int low, int high)
 {
@@ -85,6 +106,12 @@ void mergeSort(int arr[], int low, int high)
         mergeSort(arr, mid + 1, high);
         merge(arr, low, mid, high);
     }
+
+
+    // time complexity: 0(n log n)
+    // stable algorithim
+    // not inplace
+    // not suitable for small dataSets
 }
 void merge(int arr[], int low, int mid, int high)
 {
@@ -95,6 +122,7 @@ void merge(int arr[], int low, int mid, int high)
     int* temp = new int[high - low + 1];
     while (i <= mid && j <= high)
     {
+        // copy the smallest element from the 2 partial array and store them in temp array
         if (arr[i] < arr[j])
         {
             temp[k] = arr[i];
@@ -106,6 +134,7 @@ void merge(int arr[], int low, int mid, int high)
             j++,k++;
         }
     }
+    // loop if any of the array is not completely traversed
     while (i <= mid)
     {
         temp[k] = arr[i];
@@ -116,6 +145,7 @@ void merge(int arr[], int low, int mid, int high)
         temp[k] = arr[j];
         j++, k++;
     }
+    // copy the temp sorted array into original array
     for (int t = 0; t <= high - low; t++)
     {
         arr[low + t] = temp[t];
@@ -158,6 +188,19 @@ void quickSort(int arr[], int low, int high)
         quickSort(arr, low, partitionIndex - 1);
         quickSort(arr, partitionIndex + 1, high);
     }
+
+    //  Best Case: Ω (N log (N))
+    //  The best-case scenario for quicksort occur when the pivot chosen at the each step divides the array into roughly equal halves.
+    //  In this case, the algorithm will make balanced partitions, leading to efficient Sorting.
+
+    // Average Case: θ ( N log (N))
+
+    // Worst Case: O(N2)
+    // The worst-case Scenario for Quicksort occur when the pivot at each step consistently results in highly   unbalanced partitions. When the array is already sorted and the pivot is always chosen as the smallest     or largest element
+
+    // not stable
+
+    // inPlace
 }
 void countingSort(int arr[], int size)
 {
@@ -197,4 +240,14 @@ void countingSort(int arr[], int size)
             i++;
         }
     }
+
+
+    // Time Complexity: O(N+M), where N and M are the size of inputArray[] and countArray[] respectively.
+    // Worst-case: O(N+M).
+    // Average-case: O(N+M).
+    // Best-case: O(N+M).
+
+    // Counting sort is inefficient if the range of values to be sorted is very large.
+    // Counting sort is a stable algorithm.
+    // Counting sort is not an In-place sorting algorithm
 }

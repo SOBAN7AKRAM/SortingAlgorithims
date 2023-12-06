@@ -45,3 +45,12 @@ int main()
         cout << arr[i] << " ";
     return 0;
 }
+
+// Time Complexity: O(n2),
+// If we assume that insertion in a bucket takes O(1) time then steps 1 and 2 of the above algorithm clearly take O(n) time.
+// The O(1) is easily possible if we use a linked list to represent a bucket.
+// Step 4 also takes O(n) time as there will be n items in all buckets. 
+// The main step to analyze is step 3. This step also takes O(n) time on average if all numbers are uniformly distributed.
+
+// not inPlace
+// stable

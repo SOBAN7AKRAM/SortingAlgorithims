@@ -44,7 +44,7 @@ void radixSort(int array[], int size)
     int max = getMax(array, size);
     for (int place = 1; max / place > 0; place *= 10)
     {
-        countingSort(array, size, place, max);
+        countingSort(array, size, place, 10);
     }
 }
 // Print an array
@@ -62,3 +62,15 @@ int main()
     radixSort(array, n);
     printArray(array, n);
 }
+
+// Radix sort is a non-comparative integer sorting algorithm
+
+// It has a time complexity of O(d * (n + b)), where d is the number of digits, n is the number of elements, and b is the base of the number system being used.
+
+// Time Complexity	 
+// Best	O(n+k)
+// Worst	O(n+k)
+// Average	O(n+k)
+
+// not inPlace
+// stable
